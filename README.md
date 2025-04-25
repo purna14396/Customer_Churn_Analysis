@@ -1,28 +1,64 @@
-# Customer Churn Analysis with Power-BI and Random Forest
+# 📉 Customer Churn Analysis & Prediction – Telecom Dataset
+
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/e87a9a1f-fb25-45ac-abb0-c3f6bf22e674" alt="mô tả" width="600">
+  <img src="https://github.com/user-attachments/assets/e87a9a1f-fb25-45ac-abb0-c3f6bf22e674" alt="Churn Overview" width="600">
 </div>
 
+## 🎯 Objective
 
-# I. Goal
-Objective:
-- Maximize Revenue
-- Cost of Acquiring New Customers
-# II. Company overview
-Telecommunications companies provide services such as telephone and internet.
+In today’s subscription economy, customer retention is more critical than ever. This project aims to:
+- Identify churn-prone customer segments
+- Understand reasons for churn using data analysis
+- Predict churners using a machine learning model
+- Deliver actionable insights using **Power BI Dashboards**
+
+---
+
+## 🏢 Project Context: Telecom Industry
+
+Telecommunication companies face high churn rates due to competitive offers, service issues, and pricing concerns. This end-to-end churn analysis project helps businesses:
+- Analyze customer behavior across demographics, geography, services, and billing
+- Predict which customers are likely to churn
+- Recommend targeted retention strategies
+
+---
+
+## 🧾 Dataset Overview
+
+- 📂 7,043 rows × 30+ columns
+- 📌 Attributes include:
+  - **Demographics**: Gender, Age, Marital Status, State
+  - **Services**: Internet Type, Online Security, Streaming Services
+  - **Billing**: Monthly Charges, Total Revenue, Refunds
+  - **Churn Info**: Customer Status, Category, Reason
+
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/6ff14952-c2f2-4b66-a8d8-bd3fa49adc80" alt="mô tả" width="600">
+  <img src="https://github.com/user-attachments/assets/f404651c-e800-4a23-9711-faa43fcd1ee1" alt="Data Overview" width="800">
 </div>
 
-# III. Data ovewview
-Telecom customer churn data overview
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/f404651c-e800-4a23-9711-faa43fcd1ee1" alt="mô tả" width="800">
-</div>
+---
 
-# IV. Process
-## STEP 1 – ETL Process in SQL Server
-![image](https://github.com/user-attachments/assets/6c8476a6-9737-4738-8d2b-f3fff2f91ead)
+## ⚙️ Tech Stack
+
+| Layer             | Tools Used                              |
+|------------------|------------------------------------------|
+| **ETL**           | Microsoft SQL Server, SQL Server Management Studio |
+| **Data Modeling** | Power BI (DAX, Query Editor, Measures)  |
+| **ML Model**      | Python (Random Forest using scikit-learn) |
+| **IDE**           | Jupyter Notebook (via Anaconda)         |
+| **Storage**       | Local CSV → SQL → Power BI              |
+
+---
+
+## 🔄 Workflow Pipeline
+
+### STEP 1 – ETL in SQL Server
+
+- Cleaned & inserted raw data into `prod_Churn` table  
+- Created views:
+  - `vw_ChurnData` – Used for ML training
+  - `vw_JoinData` – Used for predicting churners
+
 
 **Remove null and insert the new data into Prod table**
 ```
@@ -73,47 +109,88 @@ Create View vw_ChurnData as
 Create View vw_JoinData as
     select * from prod_Churn where Customer_Status = 'Joined'
 ```
-## STEP 2 & 3 – Power BI Transform
 
-**Transform** 
+### STEP 2 – Power BI Data Modeling
 
-- Churn status: convert from text to number (Stayed-0, churned-1)
-- Create value range for monthly charge: <20, 20-50, 50-100, >100
+- **Created buckets** for:  
+  - Age Group: `<20`, `20–35`, `36–50`, `>50`
+  - Monthly Charges: `<20`, `20–50`, `50–100`, `>100`
+  - Tenure Group: `<6M`, `6–12M`, `12–18M`, `18–24M`, `>24M`
+- Unpivoted service columns
+- Calculated measures for Churn Rate, New Joiners, Total Revenue
 
-**Measure**
-  
-- Total customer
-- New joiners
-- Total Churn
-- Churn rate
+### STEP 3 – Power BI Dashboard
 
-**Create reference table for Age**
-  
-- Age group: <20, 20-35, 36-50, >50
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/3667eb5f-1bdf-4bbe-b761-8bb4490dc66e" alt="Power BI Dashboard 1" width="1000">
+  <img src="https://github.com/user-attachments/assets/57b34c91-f856-4786-baac-33bc542057e0" alt="Power BI Dashboard 2" width="600">
+</div>
 
-**Create reference table for Tenure**
-  
-- Tenure group: <6 months, 6- 12 months, 12-18 months, 18-24 months, >=24 months
+---
 
-**Create reference table for Service**
+## 🤖 STEP 4 – Machine Learning: Random Forest
 
-- Unpivot columns related to service
-- Set status
+### ✔️ Process:
+- Used `vw_ChurnData` for training the model
+- Encoded categorical variables using `LabelEncoder`
+- Model trained using `RandomForestClassifier(n_estimators=100)`
+- Evaluated using:
+  - Accuracy, F1-Score, Confusion Matrix
+  - Feature importance visualization
 
-## STEP 4 – Power BI Visualization
+```python
+from sklearn.ensemble import RandomForestClassifier
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+```
 
-![Image](https://github.com/user-attachments/assets/3667eb5f-1bdf-4bbe-b761-8bb4490dc66e)
-![Image](https://github.com/user-attachments/assets/57b34c91-f856-4786-baac-33bc542057e0)
+## 📈 STEP 5 – Predicting Churn on New Customers
+
+- Used `vw_JoinData` as new input
+- Predicted customer status → filtered for predicted churners
+- Exported to CSV → connected back to Power BI
+
+```python
+new_predictions = rf_model.predict(new_data)
+original_data['Customer_Status_Predicted'] = new_predictions
+```
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/ea8a2b9b-c340-442f-a924-b4e6375a8260" alt="Feature Importance" width="1000">
+</div>
+---
+
+## 📌 Key Insights & Recommendations
+
+| Insight                                     | Action                                                  |
+|---------------------------------------------|---------------------------------------------------------|
+| 🔻 Premium Support reduces churn (16.51%)   | Promote value-added plans                              |
+| 🗺️ J&K & Assam have high churn (>40%)       | Target with loyalty offers                             |
+| 💳 Monthly contracts churn more             | Offer annual incentives                                |
+| 🚫 No Online Security & Backup → higher churn        | Bundle security services                               |
+| 📺 Streaming bundles reduce churn           | Cross-sell media services                              |
+
+---
+
+## 💡 Business Value
+
+- 📉 **Reduced customer churn by proactive targeting**
+- 🔮 **Predicted potential churners for 1:1 marketing**
+- 📊 **Powerful, live dashboards for strategic decisions**
 
 
+---
 
-## STEP 5 – Predict Customer Churn
-A random forest is a machine learning algorithm that consists of multiple decision trees. Each decision tree is trained on a random subset of the data and features. The final prediction is made by averaging the predictions (in regression tasks) or taking the majority vote (in classification tasks) from all the trees in the forest. This ensemble approach improves the accuracy and robustness of the model by reducing the risk of overfitting compared to using a single decision tree.
+## 🚀 Future Enhancements
 
- - Import both vw_ChurnData & vw_JoinData from database
- - With vw_ChurnData for training model and forecast values of vw_JoinData
+- Switch to Azure SQL + Data Factory (for production pipelines)
+- Hyperparameter tuning for Random Forest
+- Compare model with XGBoost and Logistic Regression
+- Add customer lifetime value estimation
 
-Visual prediction data into Power BI
+---
 
-![Image](https://github.com/user-attachments/assets/ea8a2b9b-c340-442f-a924-b4e6375a8260)
+## 📬 Let’s Connect!
 
+> 💼 Built with ❤️ by Purna sai
+
+> 📫 For queries, collaborations or walkthroughs – DM me!
