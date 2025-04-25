@@ -166,10 +166,10 @@ original_data['Customer_Status_Predicted'] = new_predictions
 | 🔻 Premium Support reduces churn (16.51%)   | Promote value-added plans                              |
 | 🗺️ J&K & Assam have high churn (>40%)       | Target with loyalty offers                             |
 | 💳 Monthly contracts churn more             | Offer annual incentives                                |
-| 🚫 No Online Security & Backup → higher churn        | Bundle security services                               |
+| 🚫 No Online Security & Backup → higher churn        | Bundle security services                      |
 | 📺 Streaming bundles reduce churn           | Cross-sell media services                              |
-
 ---
+### Continuously optimize product services and stay competitive with evolving market offerings
 
 ## 💡 Business Value
 
