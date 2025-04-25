@@ -1,4 +1,4 @@
-# 📉 Customer Churn Analysis & Prediction – Telecom Dataset
+# 📉 Customer Churn Analysis & Prediction – Telecom 
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/e87a9a1f-fb25-45ac-abb0-c3f6bf22e674" alt="Churn Overview" width="600">
