@@ -1,4 +1,4 @@
-# Analyze-and-predict-customer-churn-rate-with-Power-BI-and-Random-Forest
+# Customer Churn Analysis with Power-BI and Random Forest
 <div align="center">
   <img src="https://github.com/user-attachments/assets/e87a9a1f-fb25-45ac-abb0-c3f6bf22e674" alt="mô tả" width="600">
 </div>
@@ -101,12 +101,10 @@ Create View vw_JoinData as
 - Set status
 
 ## STEP 4 – Power BI Visualization
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/7f3aebb0-3adc-47e8-b65b-c70142a979e4" alt="mô tả" width="800">
-</div>
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/3111a86d-b5b1-455d-b3d1-4b49df2407b7" alt="mô tả" width="800">
-</div>
+
+![Image](https://github.com/user-attachments/assets/3667eb5f-1bdf-4bbe-b761-8bb4490dc66e)
+![Image](https://github.com/user-attachments/assets/ea8a2b9b-c340-442f-a924-b4e6375a8260)
+![Image](https://github.com/user-attachments/assets/57b34c91-f856-4786-baac-33bc542057e0)
 
 
 ## STEP 5 – Predict Customer Churn
