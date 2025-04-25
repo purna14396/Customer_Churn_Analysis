@@ -104,7 +104,7 @@ Create View vw_JoinData as
 
 ![Image](https://github.com/user-attachments/assets/3667eb5f-1bdf-4bbe-b761-8bb4490dc66e)
 ![Image](https://github.com/user-attachments/assets/ea8a2b9b-c340-442f-a924-b4e6375a8260)
-![Image](https://github.com/user-attachments/assets/57b34c91-f856-4786-baac-33bc542057e0)
+
 
 
 ## STEP 5 – Predict Customer Churn
@@ -113,9 +113,5 @@ A random forest is a machine learning algorithm that consists of multiple decisi
  - Import both vw_ChurnData & vw_JoinData from database
  - With vw_ChurnData for training model and forecast values of vw_JoinData
 
-   [Source code](https://github.com/cuongdaoo/Analyze-and-predict-customer-churn-rate-with-Power-BI-and-Random-Forest/blob/main/Churn_Analyst.ipynb)
-
 Visual prediction data into Power BI
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/ca6cd96a-f78f-4ed1-9c2a-e40ccded972a" alt="mô tả" width="800">
-</div>
+![Image](https://github.com/user-attachments/assets/57b34c91-f856-4786-baac-33bc542057e0)
