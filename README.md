@@ -103,7 +103,7 @@ Create View vw_JoinData as
 ## STEP 4 – Power BI Visualization
 
 ![Image](https://github.com/user-attachments/assets/3667eb5f-1bdf-4bbe-b761-8bb4490dc66e)
-![Image](https://github.com/user-attachments/assets/ea8a2b9b-c340-442f-a924-b4e6375a8260)
+![Image](https://github.com/user-attachments/assets/57b34c91-f856-4786-baac-33bc542057e0)
 
 
 
@@ -114,4 +114,6 @@ A random forest is a machine learning algorithm that consists of multiple decisi
  - With vw_ChurnData for training model and forecast values of vw_JoinData
 
 Visual prediction data into Power BI
-![Image](https://github.com/user-attachments/assets/57b34c91-f856-4786-baac-33bc542057e0)
+
+![Image](https://github.com/user-attachments/assets/ea8a2b9b-c340-442f-a924-b4e6375a8260)
+
