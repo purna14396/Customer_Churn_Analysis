@@ -191,6 +191,6 @@ original_data['Customer_Status_Predicted'] = new_predictions
 
 ## 📬 Let’s Connect!
 
-> 💼 Built with ❤️ by Purna sai
+> 💼 Built by Purna sai
 
 > 📫 For queries, collaborations or walkthroughs – DM me!
