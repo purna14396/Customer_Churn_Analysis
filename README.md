@@ -144,6 +144,26 @@ rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
 rf_model.fit(X_train, y_train)
 ```
 
+## 📊 Performance Comparison: Before vs After Handling Imbalanced Dataset
+
+Understanding the impact of class imbalance is crucial for building robust models. Below are visual comparisons showing model performance **before** and **after** applying techniques to balance the dataset (e.g., SMOTE, Resampling Technique).
+
+## 🧠 Explanation:
+- Initially, I used SMOTE (Synthetic Minority Over-sampling Technique) to handle class imbalance in the dataset (71.17% vs 28.83%). However, this approach reduced model performance due to the synthetic samples not accurately reflecting the real data distribution, which likely led to overfitting and poor generalization.
+
+- Later, I switched to a resampling technique (e.g., undersampling the majority class or combining over/under sampling) and observed significant improvement in accuracy, recall, and overall performance. This indicates that the resampled data offered a better balance without distorting the underlying patterns, leading to a model that generalizes better to unseen data.
+
+---
+## 🔴 Before Handling Imbalanced Data    &nbsp;&nbsp;  🟢 After Handling Imbalanced Data
+<img src="https://github.com/user-attachments/assets/3a280be6-6c28-4b21-8569-589b6dcba856" alt="After Imbalance Handling" width="500"/> 
+
+<img src="https://github.com/user-attachments/assets/f5494aca-85a7-4038-8695-c855f560af7b" alt="Before Imbalance Handling" width="500"/>
+
+
+> ✅ After balancing, we observe improved recall and F1-score for the minority class, indicating better detection of churned customers.
+
+---
+
 ## 📈 STEP 5 – Predicting Churn on New Customers
 
 - Used `vw_JoinData` as new input
@@ -154,6 +174,7 @@ rf_model.fit(X_train, y_train)
 new_predictions = rf_model.predict(new_data)
 original_data['Customer_Status_Predicted'] = new_predictions
 ```
+
 <div align="center">
   <img src="https://github.com/user-attachments/assets/ea8a2b9b-c340-442f-a924-b4e6375a8260" alt="Feature Importance" width="1000">
 </div>
